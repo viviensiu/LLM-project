@@ -1,0 +1,34 @@
+# PURPOSE: Ignore files not required in Dockerfile COPY to reduce Docker image size, optimise build time
+#          and improve security.
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore environment files (contains secret keys)
+# .env
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore Docker files (optional)
+.dockerignore
+Dockerfile
+
+# Ignore directories that are not /app/files
+experimentation/
+image/
+junk_data/
+ingestion/
+app/test_rag.py
+
+# Ignore files that are not required in the application
+*.log
+*.md
+
+# Ignore all files in /data except for az900_notes_with_vectors.pkl
+data/*
+!data/az900_notes_with_vectors.pkl

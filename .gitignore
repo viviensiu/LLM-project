@@ -1,0 +1,4 @@
+.env
+junk_data/
+.ipynb_checkpoints
+app/test_rag.py

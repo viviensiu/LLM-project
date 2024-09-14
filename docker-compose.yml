@@ -1,0 +1,42 @@
+# version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false  # Disables security for development
+      - logger.org.elasticsearch=warn # Set logging level to warn instead of info
+    ports:
+      - "9200:9200"  # Elasticsearch REST API port
+      - "9300:9300"  # Elasticsearch transport port
+    # networks:
+    #   - app-network
+    # volumes:
+    #   - es_data:/usr/share/elasticsearch/data
+  
+  streamlit-app:
+    build: 
+      context: .  # Path to your Streamlit app folder
+      dockerfile: Dockerfile
+    container_name: az900_study_buddy_app
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+      - WORKDIR=${WORKDIR}
+      - INDEX_NAME=${INDEX_NAME}
+    ports:
+      - "8501:8501"  # Streamlit's default port
+    # networks:
+    #   - app-network
+    # volumes:
+    #   - ./app:/app
+# networks:
+#   app-network:
+#     driver: bridge
+
+# volumes:
+#   es_data:
+#     driver: local

@@ -1,0 +1,10 @@
+# tqdm==4.66.5
+# notebook==7.1.2
+openai==1.44.1
+elasticsearch==8.15.1
+pandas==2.2.2
+# jupyter==1.1.1
+sentence-transformers==2.7.0
+# python-dotenv==1.0.1
+seaborn==0.13.2
+streamlit
