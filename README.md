@@ -1,5 +1,11 @@
 # AZ-900 Study Buddy
 
+## Problem Statement
+![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/The%20best%20study%20buddy%20is%20one%20who%20doesn't%20just%20provide%20answers%20but%20helps%20you%20understand%20the%20journey%20to%20knowledge..jpg)
+Studying for any courses and preparing for an upcoming exam can be overwhelming and time-consuming when one needs to look up course materials for a specific topic, but do not know where to find it especially if there are too many materials. Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
+
+As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
+
 ## Table of contents
 
 ## Pre-requisites
@@ -46,9 +52,9 @@ docker run -it \
     ollama list
     ```
     * If you can see a **phi3** model then you could use Ollama Phi3 to test the app.
-    ![alt text]()
+    ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_list_example.png)
     * Otherwise execute `ollama pull phi3`.
-    ![alt text]()
+    ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
     * **(Optional) For those without any existing Ollama container, please execute first** the following Docker commands in command prompt:
 ```bash
 docker run -it \

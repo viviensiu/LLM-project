@@ -36,7 +36,6 @@ services:
     container_name: az900_study_buddy_app
     depends_on:
       - elasticsearch
-      - ollama
     environment:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
       - WORKDIR=${WORKDIR}
