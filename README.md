@@ -1,19 +1,50 @@
 # AZ-900 Study Buddy
 
+## Table of contents
+* [Problem Statement]()
+* [Dataset]()
+* [Tech Stack]()
+* [Good-to-have tech skills]()
+* [Methodology]()
+
 ## Problem Statement
 <p align="center">
     <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
 </p>
-Studying for any courses and preparing for an upcoming exam can be overwhelming and time-consuming when one needs to look up course materials for a specific topic, but do not know where to find it especially if there are too many materials. Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
-<br>
+Studying for any courses and preparing for an upcoming exam can be overwhelming and time-consuming when one needs to look up course materials for a specific topic, but do not know where to find it especially if there are too many materials. 
+
+Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
+
 As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
 
-## Table of contents
+## Dataset
+* All data used/generated for this project are available in [data folder](https://github.com/viviensiu/LLM-project/tree/main/data).
+* Raw data: My AZ900 course notes, see `module_*.md` files.
+* [readme_notes_with_ids.json](https://github.com/viviensiu/LLM-project/blob/main/data/readme_notes_with_ids.json): Raw data that are loaded and chunked into JSON format.
+* [az900_notes_with_vectors.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/az900_notes_with_vectors.pkl): The RAG knowledge base source which is a structured data with vector embeddings.
+* [ground-truth-data.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/ground-truth-data.pkl): Ground truth data with questions for retrieval and RAG evaluation stage.
+* [RAG_evaluation.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/RAG_evaluation.pkl): LLM generated responses, cosine similarity and latency data during RAG evaluation stage.
+* [results_backup.json](https://github.com/viviensiu/LLM-project/blob/main/data/results_backup.json): A backup of JSON format questions generated during ground truth generation stage to skip regeneration if any error during parsing into ground truth data.
 
-## Pre-requisites
-* Basic knowledge of these Docker commands: `docker ps`, `docker ps -a`, `docker start`, `docker compose up`, `docker compose down`.
+## Tech Stack
+* Python 3.12.
+* Docker.
+* Elasticsearch for knowledge base retrieval.
+* OpenAI or Ollama for LLM.
 
-## Env setup (one-time){#envsetup}
+## Good-to-have tech skills
+* Basic knowledge of these Docker commands for troubleshooting: `docker ps`, `docker ps -a`, `docker start`, `docker compose up`, `docker compose down`.
+
+## Methodology
+There are 4 stages involved:
+* Ingestion: load, chunk and embed.
+* Evaluation: retrieval and RAG.
+* Interface: streamlit application and RAG class.
+* Containerization: dockerize application, knowledge base and LLM using docker compose.
+<img src="" >
+
+
+## Env setup (one-time)
 * ```conda create -n llm-zoomcamp-env python```
 * ```conda activate llm-zoomcamp-env```
 * ```conda install pip```
@@ -25,7 +56,7 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 * ```conda activate llm-zoomcamp-env```
 * ```pipenv shell```
 
-## Experimentation{#experimentation}
+## Experimentation
 * **Purpose**:
 * **Setup**:
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
@@ -84,7 +115,7 @@ ollama pull phi3
 * Open a browser and copy-paste this link [http://localhost:8501/](http://localhost:8501/) into the browser. If the setup is successful, you should now see the following screen: 
 
 
-## Evaluation Criteria{#evaluationcriteria}
+## Evaluation Criteria
 
 * Problem description
     * This is an Azure foundation (AZ-900) exam study buddy chatbot, which aims to help fellow students who are taking this exam to retrieve relevant notes during their studies.
