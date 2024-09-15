@@ -1,17 +1,17 @@
 # AZ-900 Study Buddy
 
 ## Table of contents
-* [Problem Statement]()
-* [Dataset]()
-* [Tech Stack]()
-* [Good-to-have tech skills]()
-* [Methodology]()
+* [Problem Statement](https://github.com/viviensiu/LLM-project/blob/main/README.md#problem-statement)
+* [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset)
+* [Tech Stack](https://github.com/viviensiu/LLM-project/blob/main/README.md#tech-stack)
+* [Good-to-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#good-to-have)
+* [Methodology](https://github.com/viviensiu/LLM-project/blob/main/README.md#methodology)
 
 ## Problem Statement
 <p align="center">
     <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
 </p>
-Studying for any courses and preparing for an upcoming exam can be overwhelming and time-consuming when one needs to look up course materials for a specific topic, but do not know where to find it especially if there are too many materials. 
+Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. 
 
 Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
 
@@ -24,7 +24,7 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 * [az900_notes_with_vectors.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/az900_notes_with_vectors.pkl): The RAG knowledge base source which is a structured data with vector embeddings.
 * [ground-truth-data.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/ground-truth-data.pkl): Ground truth data with questions for retrieval and RAG evaluation stage.
 * [RAG_evaluation.pkl](https://github.com/viviensiu/LLM-project/blob/main/data/RAG_evaluation.pkl): LLM generated responses, cosine similarity and latency data during RAG evaluation stage.
-* [results_backup.json](https://github.com/viviensiu/LLM-project/blob/main/data/results_backup.json): A backup of JSON format questions generated during ground truth generation stage to skip regeneration if any error during parsing into ground truth data.
+* [results_backup.json](https://github.com/viviensiu/LLM-project/blob/main/data/results_backup.json): A backup of JSON format questions generated during ground truth generation stage (to skip question regeneration if any error occurs during parsing).
 
 ## Tech Stack
 * Python 3.12.
@@ -32,16 +32,18 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 * Elasticsearch for knowledge base retrieval.
 * OpenAI or Ollama for LLM.
 
-## Good-to-have tech skills
+## Good-to-have
 * Basic knowledge of these Docker commands for troubleshooting: `docker ps`, `docker ps -a`, `docker start`, `docker compose up`, `docker compose down`.
 
 ## Methodology
-There are 4 stages involved:
+There are 4 main steps, the first 2 steps:
 * Ingestion: load, chunk and embed.
 * Evaluation: retrieval and RAG.
+![methodology](https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png)
+Once the best retrieval method and RAG is determined, the app. **AZ900 Study Buddy** is then built in these 2 steps:
 * Interface: streamlit application and RAG class.
 * Containerization: dockerize application, knowledge base and LLM using docker compose.
-<img src="" >
+![alt text]()
 
 
 ## Env setup (one-time)
