@@ -1,9 +1,11 @@
 # AZ-900 Study Buddy
 
 ## Problem Statement
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=100>
+<p align="center">
+    <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
+</p>
 Studying for any courses and preparing for an upcoming exam can be overwhelming and time-consuming when one needs to look up course materials for a specific topic, but do not know where to find it especially if there are too many materials. Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
-
+<br>
 As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
 
 ## Table of contents
