@@ -40,13 +40,14 @@ There are 4 main steps, the first 2 steps:
 * Ingestion: load, chunk and embed.
 * Evaluation: retrieval and RAG.
 <p align="center">
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=800>
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=600>
 </p>
+
 Once the best retrieval method and RAG is determined, the app. **AZ900 Study Buddy** is then built in these 2 steps:
 * Interface: streamlit application and RAG class.
 * Containerization: dockerize application, knowledge base and LLM using docker compose.
 <p align="center">
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=800>
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=600>
 </p>
 
 ## Env setup (one-time)
