@@ -49,7 +49,7 @@ docker run -it \
     ![alt text]()
     * Otherwise execute `ollama pull phi3`.
     ![alt text]()
-* **(Optional) For those without any existing Ollama container, please execute first** the following Docker commands in command prompt:
+    * **(Optional) For those without any existing Ollama container, please execute first** the following Docker commands in command prompt:
 ```bash
 docker run -it \
     --rm \
