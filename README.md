@@ -13,7 +13,7 @@
 </p>
 Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. 
 
-Hence, a RAG application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
+Hence, a RAG(Retrieval-Augmented-Generation) application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
 
 As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
 
@@ -32,39 +32,40 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 * Elasticsearch for knowledge base retrieval.
 * OpenAI or Ollama for LLM.
 
+# Must-have
+* Docker, since the knowledge base is indexed into elasticsearch docker container. You could download it at [Download Docker Desktop](https://www.docker.com/products/docker-desktop/).
+* An OpenAI account with credits, or an Ollama docker container with Phi3 model pulled. 
+
 ## Good-to-have
 * Basic knowledge of these Docker commands for troubleshooting: `docker ps`, `docker ps -a`, `docker start`, `docker compose up`, `docker compose down`.
 
 ## Methodology
 There are 4 main steps, the first 2 steps:
-* Ingestion: load, chunk and embed.
-* Evaluation: retrieval and RAG.
+* Ingestion: load, chunk and embed raw data into structured data with embeddings.
+* Evaluation: evaluate the best retrieval and RAG methods for this use case.
 <p align="center">
 <img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=600>
 </p>
 
 Once the best retrieval method and RAG is determined, the app. **AZ900 Study Buddy** is then built in these 2 steps:
-* Interface: streamlit application and RAG class.
+* Interface: streamlit application and RAG backend.
 * Containerization: dockerize application, knowledge base and LLM using docker compose.
 <p align="center">
 <img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=600>
 </p>
 
-## Env setup (one-time)
+## Environment setup 
+One-time setup to reproduce any parts of this repo. You can skip this if you only want to run the application.
 * ```conda create -n llm-zoomcamp-env python```
 * ```conda activate llm-zoomcamp-env```
 * ```conda install pip```
 * ```pip install pipenv```
 * ```pipenv install tqdm notebook==7.1.2 openai elasticsearch pandas jupyter sentence_transformers==2.7.0 python-dotenv seaborn streamlit```
-* Docker is installed at your local desktop, you could download it at [Download Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-## Activating virtual env for this project
+### Activating virtual env for this project
 * ```conda activate llm-zoomcamp-env```
 * ```pipenv shell```
-
-## Experimentation
-* **Purpose**:
-* **Setup**:
+* Make sure docker service is up and running!
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
 * If not, either start up your existing elasticsearch container using `docker start elasticsearch` or start a new elasticsearch container with the following command: 
 ```bash
@@ -77,7 +78,7 @@ docker run -it \
     docker.elastic.co/elasticsearch/elasticsearch:8.4.3
 ```
 
-## Instructions to setup and run this app locally
+## Running the application
 * Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
