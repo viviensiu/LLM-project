@@ -39,13 +39,15 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 There are 4 main steps, the first 2 steps:
 * Ingestion: load, chunk and embed.
 * Evaluation: retrieval and RAG.
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=400>
-
+<p align="center">
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=800>
+</p>
 Once the best retrieval method and RAG is determined, the app. **AZ900 Study Buddy** is then built in these 2 steps:
 * Interface: streamlit application and RAG class.
 * Containerization: dockerize application, knowledge base and LLM using docker compose.
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=400>
-
+<p align="center">
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=800>
+</p>
 
 ## Env setup (one-time)
 * ```conda create -n llm-zoomcamp-env python```
