@@ -7,8 +7,11 @@
 * [Must-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#must-have)
 * [Good-to-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#good-to-have)
 * [Methodology](https://github.com/viviensiu/LLM-project/blob/main/README.md#methodology)
-* [Environment setup]()
-* [Running the application]()
+* [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup)
+* [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search)
+* [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose)
+* [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
+* [Future works]()
 
 ## Problem Statement
 <p align="center">
@@ -82,7 +85,7 @@ docker run -it \
 ```
 
 ## Running the application (using docker compose)
-This is for reproduction of the AZ900 Study Buddy application.
+This is for reproduction of the AZ900 Study Buddy application only.
 * Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
@@ -127,45 +130,35 @@ ollama pull phi3
 
 
 ## Evaluation Criteria
+Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria) for the LLM zoomcamp project evaluation criterias.
+* **Problem description**
+    * See [Problem Statement](https://github.com/viviensiu/LLM-project/blob/main/README.md#problem-statement).
+* **RAG flow**
+    * Both a knowledge base and an LLM are used in the RAG flow. See [Methodology](https://github.com/viviensiu/LLM-project/blob/main/README.md#methodology).
+* **Retrieval evaluation**
+    * Metrics used: Hit rate and Mean Reciprocal Rank (MRR)
+    * Multiple retrieval approaches are evaluated: text search, vector search, hybrid search, together with fine-tuning on the boost parameter. Refer notebook [retrieval_evaluation.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/retrieval_evaluation.ipynb) for details. 
+    * Hybrid search with document reranking is also evaluated. Refer notebook [hybrid_search_reranking.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/hybrid_search_reranking.ipynb) for details.
+    * Conclusion: Hybrid search (without document reranking) has the best retrieval performance. 
+* **RAG evaluation**
+    * Metrics used: Cosine similarity, latency, cost and tokens usage.
+    * Models evaluated: GPT-4o-mini, GPT-3.5-turbo.
+    * Multiple RAG approaches are evaluated based on metrics above.
+    * Conclusion: The best one, GPT-4o-mini, is used in the application.
+* **Interface**
+   * A Streamlit UI is used. See [app.py](https://github.com/viviensiu/LLM-project/blob/main/app/app.py)
+* **Ingestion pipeline**
+   * Automated ingestion within Dockerfile by auto-calling a shell script [entrypoint.sh](https://github.com/viviensiu/LLM-project/blob/main/entrypoint.sh) that runs the Python script [index_data.py](https://github.com/viviensiu/LLM-project/blob/main/app/index_data.py) to index data into elasticsearch container.
+* **Monitoring**
+   * Currently unavailable.
+* **Containerization**
+    * Everything is in docker-compose with an optional setup (if want to use Ollama Phi3 instead of GPT-4o-mini). See [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose).
+* **Reproducibility**
+    * See [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset), [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup), [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
+* **Best practices**
+    * Hybrid search: refer notebook [retrieval_evaluation.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/retrieval_evaluation.ipynb).
+    * Document re-ranking: refer notebook [hybrid_search_reranking.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/hybrid_search_reranking.ipynb).
+* **Bonus points (not covered in the course)**
+    * Currently unavailable in the cloud.
 
-* Problem description
-    * This is an Azure foundation (AZ-900) exam study buddy chatbot, which aims to help fellow students who are taking this exam to retrieve relevant notes during their studies.
-    * A quick way to look up
-* RAG flow
-    * 0 points: No knowledge base or LLM is used
-    * 1 point: No knowledge base is used, and the LLM is queried directly
-    * **2 points: Both a knowledge base and an LLM are used in the RAG flow** 
-* Retrieval evaluation
-    * 0 points: No evaluation of retrieval is provided
-    * 1 point: Only one retrieval approach is evaluated
-    * **2 points: Multiple retrieval approaches are evaluated, and the best one is used**
-* RAG evaluation
-    * 0 points: No evaluation of RAG is provided
-    * 1 point: Only one RAG approach (e.g., one prompt) is evaluated
-    * **2 points: Multiple RAG approaches are evaluated, and the best one is used**
-* Interface
-   * 0 points: No way to interact with the application at all
-   * 1 point: Command line interface, a script, or a Jupyter notebook
-   * **2 points: UI (e.g., Streamlit), web application (e.g., Django), or an API (e.g., built with FastAPI)** 
-* Ingestion pipeline
-   * 0 points: No ingestion
-   * 1 point: Semi-automated ingestion of the dataset into the knowledge base, e.g., with a Jupyter notebook
-   * **2 points: Automated ingestion with a Python script or a special tool (e.g., Mage, dlt, Airflow, Prefect)**
-* Monitoring
-   * 0 points: No monitoring
-   * 1 point: User feedback is collected OR there's a monitoring dashboard
-   * 2 points: User feedback is collected and there's a dashboard with at least 5 charts
-* Containerization
-    * 0 points: No containerization
-    * 1 point: Dockerfile is provided for the main application OR there's a docker-compose for the dependencies only
-    * 2 points: Everything is in docker-compose
-* Reproducibility
-    * 0 points: No instructions on how to run the code, the data is missing, or it's unclear how to access it
-    * 1 point: Some instructions are provided but are incomplete, OR instructions are clear and complete, the code works, but the data is missing
-    * 2 points: Instructions are clear, the dataset is accessible, it's easy to run the code, and it works. The versions for all dependencies are specified.
-* Best practices
-    * **[ ] Hybrid search: combining both text and vector search (at least evaluating it) (1 point)**
-    * **[ ] Document re-ranking (1 point)**
-    * [ ] User query rewriting (1 point)
-* Bonus points (not covered in the course)
-    * [ ] Deployment to the cloud (2 points)
+## Future works
