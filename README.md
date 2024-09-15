@@ -2,13 +2,15 @@
 
 ## Table of contents
 
+## Pre-requisites
+* Basic knowledge of these Docker commands: `docker ps`, `docker ps -a`, `docker start`, `docker compose up`, `docker compose down`.
 
 ## Env setup (one-time){#envsetup}
 * ```conda create -n llm-zoomcamp-env python```
 * ```conda activate llm-zoomcamp-env```
 * ```conda install pip```
 * ```pip install pipenv```
-* ```pipenv install tqdm notebook==7.1.2 openai elasticsearch pandas jupyter sentence_transformers==2.7.0 python-dotenv seaborn```
+* ```pipenv install tqdm notebook==7.1.2 openai elasticsearch pandas jupyter sentence_transformers==2.7.0 python-dotenv seaborn streamlit```
 * Docker is installed at your local desktop, you could download it at [Download Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ## Activating virtual env for this project
@@ -35,7 +37,33 @@ docker run -it \
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
 * Rename `.env_template` to `.env`
-* Make sure docker service is started.
+* Make sure Docker service is up and running.
+* There are 2 LLM options to be used in the application: GPT-4o-mini and Ollama Phi3. 
+    * If you go for the GPT-4o-mini option, you will be prompted to select GPT-4o-mini and enter your OpenAI API key at the application screen. 
+    * **(Optional)To use Ollama Phi3**: You need to have a **running ollama container** in Docker (check if ollama is running using `docker ps`. If not running, check if you have a stopped ollama container using `docker ps -a`, if one exists, restart container using `docker start ollama`). Once ollama container is running, check if the ollama container has a Phi3 model already by doing the following:
+    ```bash
+    docker exec -it ollama bash
+    ollama list
+    ```
+    * If you can see a **phi3** model then you could use Ollama Phi3 to test the app.
+    ![alt text]()
+    * Otherwise execute `ollama pull phi3`.
+    ![alt text]()
+* **(Optional) For those without any existing Ollama container, please execute first** the following Docker commands in command prompt:
+```bash
+docker run -it \
+    --rm \
+    -v ollama:/root/.ollama \
+    -p 11434:11434 \
+    --name ollama \
+    ollama/ollama
+```
+    * if the above is successful, you should see an ollama container when you execute the command ```docker ps```.
+    * After that, pull Phi3 model into the ollama container by executing:
+```bash
+docker exec -it ollama bash
+ollama pull phi3
+```
 * Open up a command prompt session or in your VSCode terminal, execute the following:
     * Navigate to the folder which contains all unzipped files for this application.
     * Run `docker compose up` or `docker compose up -d`(detached mode if you don't want your command line session to be "locked" by a running container session).

@@ -43,17 +43,32 @@ st.html(
 """
 )
 
-# Sidebar Okay!
+# # Sidebar Okay!
+# with st.sidebar:
+#     with st.form("llm form", clear_on_submit=True):
+#         model_choice = st.selectbox("Choose an LLM Model for this chatbot",
+#                         options=list(llm_options.keys()), format_func=lambda x:llm_options[x])
+        
+#         apikey = st.text_input(f'Input your LLM API key here', type='password')
+#         button = st.form_submit_button("Submit")
+#         if button:
+#             # replace with llm initialization 
+#             st.session_state.bot = RAG(model_choice, apikey)
+
+
 with st.sidebar:
-    with st.form("llm form", clear_on_submit=True):
-        model_choice = st.selectbox("Choose an LLM Model for this chatbot",
+    model_choice = st.selectbox("Choose an LLM Model for this chatbot",
                         options=list(llm_options.keys()), format_func=lambda x:llm_options[x])
-        apikey = st.text_input(f'Input your LLM API key here', type='password')
+    
+    with st.form("llm form", clear_on_submit=True):    
+        apikey = None    
+        if model_choice == "1":
+            apikey = st.text_input(f'Input your OpenAI API key here', type='password')
         button = st.form_submit_button("Submit")
         if button:
             # replace with llm initialization 
             st.session_state.bot = RAG(model_choice, apikey)
-            # st.sidebar.markdown(bot.model)
+            st.sidebar.markdown(f"LLM model set to {llm_options[model_choice]}")
             # st.sidebar.markdown(bot.apikey)
 
 # Display chat messages from history on app rerun

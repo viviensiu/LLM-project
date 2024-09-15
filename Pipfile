@@ -13,6 +13,7 @@ jupyter = "*"
 sentence-transformers = "==2.7.0"
 python-dotenv = "*"
 seaborn = "*"
+streamlit = "*"
 
 [dev-packages]
 

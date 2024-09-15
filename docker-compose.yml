@@ -16,6 +16,19 @@ services:
     # volumes:
     #   - es_data:/usr/share/elasticsearch/data
   
+  # ollama:
+  #   image: ollama/ollama  # Assuming the Ollama CLI image
+  #   container_name: ollama
+  #   volumes:
+  #     - ./ollama/ollama:/root/.ollama  # Mount volume to store the model
+  #   command: >
+  #     sh -c "
+  #     ollama pull microsoft/phi3 &&
+  #     ollama serve --model /app/data/microsoft-phi3"
+  #   ports:
+  #     - "11434:11434"
+  #   restart: unless-stopped
+
   streamlit-app:
     build: 
       context: .  # Path to your Streamlit app folder
@@ -23,10 +36,13 @@ services:
     container_name: az900_study_buddy_app
     depends_on:
       - elasticsearch
+      - ollama
     environment:
       - ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
       - WORKDIR=${WORKDIR}
       - INDEX_NAME=${INDEX_NAME}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - OLLAMA_API_KEY=${OLLAMA_API_KEY}
     ports:
       - "8501:8501"  # Streamlit's default port
     # networks:

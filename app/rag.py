@@ -8,11 +8,15 @@ class RAG():
     def __init__(self, modelname, apikey=None) -> None:
         self.es_client = Elasticsearch(os.getenv("ELASTICSEARCH_URL"))
         self.index_name = os.getenv("INDEX_NAME")
+        self.ollama_base_url = os.getenv("OLLAMA_BASE_URL")
+        self.ollama_api_key = os.getenv("OLLAMA_API_KEY")
+        self.apikey = apikey
+
         # ------- Uncomment for test_rag.py --------------------
         # self.es_client = Elasticsearch("http://localhost:9200")
         # self.index_name = "az900_course_notes"
-
-        self.apikey = apikey
+        # self.ollama_base_url = "http://localhost:11434/v1/"
+        # self.ollama_api_key = "ollama"
         # apikey = os.getenv("OPENAI_API_KEY")
 
         if modelname == "1":
@@ -20,7 +24,7 @@ class RAG():
             self.client = OpenAI(api_key=apikey)
             self.model = "gpt-4o-mini"
         elif modelname == "2":
-            self.client = OpenAI(base_url='http://localhost:11434/v1/', api_key='ollama')
+            self.client = OpenAI(base_url=self.ollama_base_url, api_key=self.ollama_api_key)
             self.model = "phi3"
 
     def retrieve(self, question, question_vec):
