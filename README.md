@@ -4,8 +4,11 @@
 * [Problem Statement](https://github.com/viviensiu/LLM-project/blob/main/README.md#problem-statement)
 * [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset)
 * [Tech Stack](https://github.com/viviensiu/LLM-project/blob/main/README.md#tech-stack)
+* [Must-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#must-have)
 * [Good-to-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#good-to-have)
 * [Methodology](https://github.com/viviensiu/LLM-project/blob/main/README.md#methodology)
+* [Environment setup]()
+* [Running the application]()
 
 ## Problem Statement
 <p align="center">
@@ -32,7 +35,7 @@ As I'm currently studying for the Azure Foundation certification AZ-900 exam, my
 * Elasticsearch for knowledge base retrieval.
 * OpenAI or Ollama for LLM.
 
-# Must-have
+## Must-have
 * Docker, since the knowledge base is indexed into elasticsearch docker container. You could download it at [Download Docker Desktop](https://www.docker.com/products/docker-desktop/).
 * An OpenAI account with credits, or an Ollama docker container with Phi3 model pulled. 
 
@@ -55,17 +58,17 @@ Once the best retrieval method and RAG is determined, the app. **AZ900 Study Bud
 </p>
 
 ## Environment setup 
-One-time setup to reproduce any parts of this repo. You can skip this if you only want to run the application.
+One-time setup to reproduce any parts of this repo. You can skip this if you only want to run the application using `docker compose`.
 * ```conda create -n llm-zoomcamp-env python```
 * ```conda activate llm-zoomcamp-env```
 * ```conda install pip```
 * ```pip install pipenv```
 * ```pipenv install tqdm notebook==7.1.2 openai elasticsearch pandas jupyter sentence_transformers==2.7.0 python-dotenv seaborn streamlit```
-
-### Activating virtual env for this project
-* ```conda activate llm-zoomcamp-env```
-* ```pipenv shell```
+* ```pipenv shell```: This allows you to run commands such as `python xxx.py`, `streamlit run xxx.py` in the virtual environment.
 * Make sure docker service is up and running!
+
+## Elastic Search
+For some code reproduction, you will need elasticsearch container to be running.
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
 * If not, either start up your existing elasticsearch container using `docker start elasticsearch` or start a new elasticsearch container with the following command: 
 ```bash
@@ -78,7 +81,8 @@ docker run -it \
     docker.elastic.co/elasticsearch/elasticsearch:8.4.3
 ```
 
-## Running the application
+## Running the application (using docker compose)
+This is for reproduction of the AZ900 Study Buddy application.
 * Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
