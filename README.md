@@ -24,6 +24,7 @@
 </p>
 Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. 
 
+
 Hence, a RAG(Retrieval-Augmented-Generation) application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
 
 As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
@@ -55,14 +56,14 @@ There are 4 main steps, the first 2 steps:
 * Ingestion: load, chunk and embed raw data into structured data with embeddings.
 * Evaluation: evaluate the best retrieval and RAG methods for this use case.
 <p align="center">
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=600>
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/methodology.png" width=700>
 </p>
 
 Once the best retrieval method and RAG is determined, the app **AZ900 Study Buddy** is then built in these 2 steps:
 * Interface: streamlit application and RAG backend.
 * Containerization: dockerize application, knowledge base and LLM using docker compose.
 <p align="center">
-<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=600>
+<img src="https://github.com/viviensiu/LLM-project/blob/main/image/az900_flow.png" width=700>
 </p>
 
 ## Environment setup 
@@ -79,13 +80,14 @@ One-time setup to reproduce any parts of this repo on your workstation. **You ca
 * Start [elasticsearch](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
 
 ### .env template
-* Rename [.env_template] to `.env`. 
+* Refer ChatGPT's suggestions to [view `.env*` files](https://chatgpt.com/share/66e80914-4264-8001-8dae-a523469b0f9a). Else you can't proceed with next step.
+* Rename [.env_template](https://github.com/viviensiu/LLM-project/blob/main/.env_template) to `.env`. 
 * (Not applicable for running application, only for code reproduction) copy-paste your OpenAI API key to env. variable "OPENAI_API_KEY".
 
 ### Elastic Search
 **Not applicable for running application as it's handled by docker compose**. For some code reproduction, you will need elasticsearch container to be running..
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
-* If not, either start up your existing elasticsearch container using `docker start elasticsearch` or start a new elasticsearch container with the following command: 
+* If not, either start an existing elasticsearch container using `docker start elasticsearch` or a new elasticsearch container with the following command: 
 ```bash
 docker run -it \
     --name elasticsearch \
@@ -102,7 +104,7 @@ This is for reproduction of the AZ900 Study Buddy application only (without repr
 ### Pick your LLM
 * There are 2 LLM options available in the application: GPT-4o-mini and Ollama Phi3. You need to decide on which one to use and to have it ready before starting the application. See diagram for setup flow:
 ![app setup flow](https://github.com/viviensiu/LLM-project/blob/main/image/app_setup_flow.png)
-    * **GPT-4o-mini** option: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]() directly.
+    * **GPT-4o-mini**: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]() directly.
     * **Ollama Phi3**: You need to have a **running ollama container with Phi3 model inside**.To check if you have an existing ollama container, execute `docker ps -a`. 
         * If one exists but stopped, start container with `docker start ollama`. 
         * If there's no existing Ollama container, execute the following:
@@ -122,17 +124,15 @@ docker run -it \
 ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
 
 ### Start up application
-* Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
-* Download this zip file to the `AZ900_study_buddy` on your Desktop.
-* Unzip the downloaded zip file.
-* Rename `.env_template` to `.env` inside folder.
+* Download this zip file [az900_study_buddy.zip]() to your Desktop.
+* Unzip the downloaded `az900_study_buddy.zip`. You should see a new folder `az900_study_buddy` on your Desktop.
 * Execute the following in command prompt:
-    * Navigate to the folder which contains all unzipped files for this application.
+    * `cd Desktop/az900_study_buddy`.
     * Run `docker compose up` or `docker compose up -d` (detached mode). This takes about 2-3 minutes.
     * Cross check containers are up with `docker ps`, you should see containers `az900_study_buddy_app` and `elasticsearch`. If you plan to use Ollama, you need ti see `ollama` as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
     * (Optional) To double check that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). If the knowledge base is indexed you should see `az900_course_notes` under "index".
-* Open a browser and copy-paste this link [http://localhost:8501/](http://localhost:8501/) into the browser. If the setup is successful, you should now see the following screen: 
-
+* To access the application, copy-paste this link [http://localhost:8501/](http://localhost:8501/) into a browser. If it is successful, you should now see the following screen: 
+* **Note**: Using `docker compose up -d` would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [http://localhost:8501/](http://localhost:8501/). Please try loading the page again after a minute or so.
 
 ## Evaluation Criteria
 For peer review: A full list of LLM zoomcamp project evaluation criteria is available [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria). 
