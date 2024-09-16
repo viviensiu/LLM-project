@@ -23,7 +23,7 @@
 <p align="center">
     <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
 </p>
-Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. \
+Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it.
 
 Hence, a RAG(Retrieval-Augmented-Generation) application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
 
