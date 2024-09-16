@@ -144,6 +144,11 @@ docker run -it \
 * You can now start to ask questions. Here's a screenshot of the interaction using Ollama:
 ![sample interaction](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_example.png) 
 
+### Stopping the application
+* Execute the following in command prompt:
+    * `cd Desktop/az900_study_buddy`.
+    * `docker compose down` 
+
 ## Evaluation Criteria
 For peer review: A full list of LLM zoomcamp project evaluation criteria is available [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria). 
 * **Problem description**
