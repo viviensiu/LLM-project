@@ -16,7 +16,7 @@
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
 * [Future works](https://github.com/viviensiu/LLM-project/blob/main/README.md#future-works)
 * [Credits](https://github.com/viviensiu/LLM-project/blob/main/README.md#credits)
-* [Contact info for peers]()
+* [Contact info for peers](https://github.com/viviensiu/LLM-project/blob/main/README.md#contact-info-for-peers)
 
 ## Problem Statement
 <p align="center">
@@ -80,9 +80,9 @@ One-time setup to reproduce any parts of this repo on your workstation. **You ca
 * Start [elasticsearch](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
 
 ### .env template
-* Refer ChatGPT's suggestions to [view `.env*` files](https://chatgpt.com/share/66e80914-4264-8001-8dae-a523469b0f9a). Else you can't proceed with next step.
+* Refer [ChatGPT's suggestions](https://chatgpt.com/share/66e80914-4264-8001-8dae-a523469b0f9a) to view `.env*` files. Else you can't proceed with next step.
 * Rename [.env_template](https://github.com/viviensiu/LLM-project/blob/main/.env_template) to `.env`. 
-* (Not applicable for running application, only for code reproduction) copy-paste your OpenAI API key to env. variable "OPENAI_API_KEY".
+* **(Not applicable for running application, only for code reproduction)** Copy-paste your OpenAI API key to env. variable "OPENAI_API_KEY".
 
 ### Elastic Search
 **Not applicable for running application as it's handled by docker compose**. For some code reproduction, you will need elasticsearch container to be running..
@@ -128,11 +128,20 @@ docker run -it \
 * Unzip the downloaded `az900_study_buddy.zip`. You should see a new folder `az900_study_buddy` on your Desktop.
 * Execute the following in command prompt:
     * `cd Desktop/az900_study_buddy`.
-    * Run `docker compose up` or `docker compose up -d` (detached mode). This takes about 2-3 minutes.
-    * Cross check containers are up with `docker ps`, you should see containers `az900_study_buddy_app` and `elasticsearch`. If you plan to use Ollama, you need ti see `ollama` as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
-    * (Optional) To double check that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). If the knowledge base is indexed you should see `az900_course_notes` under "index".
+    * Run `docker compose up`. This takes about 2-3 minutes. Once it's done you should see the following (if using `docker compose up`):
+    ![docker compose completed](https://github.com/viviensiu/LLM-project/blob/main/image/streamlit_ready.png)
+    * Cross check containers are up with `docker ps`, you should see containers `az900_study_buddy_app` and `elasticsearch`. If you plan to use Ollama, you need to see `ollama` as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
+    * (Optional) To check that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). You should see `az900_course_notes` under "index".
 * To access the application, copy-paste this link [http://localhost:8501/](http://localhost:8501/) into a browser. If it is successful, you should now see the following screen: 
-* **Note**: Using `docker compose up -d` would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [http://localhost:8501/](http://localhost:8501/). Please try loading the page again after a minute or so.
+![app screen](https://github.com/viviensiu/LLM-project/blob/main/image/app_screen.png)
+* **Note**: If you executed `docker compose up -d`(detached mode), it would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [http://localhost:8501/](http://localhost:8501/). Please try loading the page again after a minute or so.
+
+### How to use the application
+* You must choose an LLM model first before you could start asking questions!
+* If you're using GPT-4o-mini, select "OpenAI GPT-4o-mini" in drop down list and input your API key, press submit.
+* If you're using Ollama Microsoft Phi3, select "" and press submit.
+* You can now start to ask questions. Here's a screenshot of the interaction using Ollama:
+![sample interaction](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_example.png) 
 
 ## Evaluation Criteria
 For peer review: A full list of LLM zoomcamp project evaluation criteria is available [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria). 
