@@ -10,6 +10,8 @@
 * [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup)
 * [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search)
 * [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose)
+    * [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm)
+    * [Start up application](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
 * [Future works]()
 
@@ -61,17 +63,23 @@ Once the best retrieval method and RAG is determined, the app **AZ900 Study Budd
 </p>
 
 ## Environment setup 
-One-time setup to reproduce any parts of this repo. You can skip this if you only want to run the application using `docker compose`.
+One-time setup to reproduce any parts of this repo on your workstation. **You can skip to [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose) if you only want to run the application.**
 * ```conda create -n llm-zoomcamp-env python```
 * ```conda activate llm-zoomcamp-env```
 * ```conda install pip```
 * ```pip install pipenv```
 * ```pipenv install tqdm notebook==7.1.2 openai elasticsearch pandas jupyter sentence_transformers==2.7.0 python-dotenv seaborn streamlit```
 * ```pipenv shell```: This allows you to run commands such as `python xxx.py`, `streamlit run xxx.py` in the virtual environment.
-* Make sure docker service is up and running!
+* **Make sure docker service is up and running!**
+* `git clone` this repo to your local workstation.
+* [Prepare the .env file]().
+* Start [elasticsearch].
 
-## Elastic Search
-For some code reproduction, you will need elasticsearch container to be running.
+### .env template
+Rename [.env_template] to `.env`
+
+### Elastic Search
+For some code reproduction, you will need elasticsearch container to be running. **Not applicable for running the application only as it's handled by docker compose**.
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
 * If not, either start up your existing elasticsearch container using `docker start elasticsearch` or start a new elasticsearch container with the following command: 
 ```bash
@@ -89,7 +97,7 @@ This is for reproduction of the AZ900 Study Buddy application only (without repr
 * **Make sure Docker service is up and running!**
 ### Pick your LLM
 * There are 2 LLM options available in the application: GPT-4o-mini and Ollama Phi3. You need to decide on which one to use and to have it ready before starting the application. See diagram for setup flow:
-![app setup flow]()
+![app setup flow](https://github.com/viviensiu/LLM-project/blob/main/image/app_setup_flow.png)
     * **GPT-4o-mini** option: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]() directly.
     * **Ollama Phi3**: You need to have a **running ollama container with Phi3 model inside**.To check if you have an existing ollama container, execute `docker ps -a`. 
         * If one exists but stopped, start container with `docker start ollama`. 
@@ -102,26 +110,23 @@ docker run -it \
     --name ollama \
     ollama/ollama
 ```
-    * Once ollama container is running (you can see it in `docker ps`), check if the ollama container has a Phi3 model already by doing the following:
-    `docker exec -it ollama bash`, then `ollama list`
-        * If you can see a **phi3** model then you could use Ollama Phi3 to test the app.
-    ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_list_example.png)
-        * Otherwise, execute `ollama pull phi3`.
-    ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
+* Once ollama container is running (you can see it in `docker ps`), check if the ollama container has a Phi3 model by executing:
+    * `docker exec -it ollama bash`, then `ollama list`.
+    * If you can see a **phi3** model then you could use Ollama Phi3 to test the app.
+![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_list_example.png)
+    * Otherwise, execute `ollama pull phi3`.
+![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
+
 ### Start up application
 * Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
 * Rename `.env_template` to `.env`
-* Open up a command prompt session or in your VSCode terminal, execute the following:
+* Execute the following in command prompt:
     * Navigate to the folder which contains all unzipped files for this application.
-    * Run `docker compose up` or `docker compose up -d`(detached mode if you don't want your command line session to be "locked" by a running container session).
-    * Run `docker ps` to cross check that containers are up, you should be able to see containers with names `az900_study_buddy_app` and `elasticsearch` up and running.
-    * (Optional) To double check that indices are created in elasticsearch, do
-    ```bash
-    curl -X GET "http://localhost:9200/_cat/indices?v"
-    ```
-    or copy-paste [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v) in browser. If the knowledge base is indexed you should see `az900_course_notes` under "index".
+    * Run `docker compose up` or `docker compose up -d` (detached mode). This takes about 2-3 minutes.
+    * Cross check containers are up with `docker ps`, you should see containers `az900_study_buddy_app` and `elasticsearch`. If you plan to use Ollama, you need ti see `ollama` as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
+    * (Optional) To double check that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). If the knowledge base is indexed you should see `az900_course_notes` under "index".
 * Open a browser and copy-paste this link [http://localhost:8501/](http://localhost:8501/) into the browser. If the setup is successful, you should now see the following screen: 
 
 
@@ -148,7 +153,7 @@ Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#
 * **Monitoring**
    * Currently unavailable.
 * **Containerization**
-    * Everything is in docker-compose with an optional setup (if want to use Ollama Phi3 instead of GPT-4o-mini). See [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose).
+    * Everything is in docker-compose with an optional setup (if want to use Ollama Phi3 instead of GPT-4o-mini). See [Running the application (using docker compose)](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose).
 * **Reproducibility**
     * See [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset), [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup), [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
 * **Best practices**
@@ -158,3 +163,9 @@ Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#
     * Currently unavailable in the cloud.
 
 ## Future works
+* Monitoring using PostgreSQL and Grafana.
+* Migrate data to MongoDB.
+* Deploy app onto cloud: HuggingFace Spaces, Streamlit Cloud, AWS EC2.
+
+## Credits
+A big thanks to Alexey Grigorev and the DataTalks.Club for the LLM Zoomcamp course, which made it possible for me to produce my very own RAG application :smiley:
