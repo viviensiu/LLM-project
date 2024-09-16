@@ -14,6 +14,7 @@
     * [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm)
     * [Start up application](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)
     * [How to use the application](https://github.com/viviensiu/LLM-project?tab=readme-ov-file#how-to-use-the-application)
+    * [Stopping the application](https://github.com/viviensiu/LLM-project?tab=readme-ov-file#stopping-the-application)
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
 * [Future works](https://github.com/viviensiu/LLM-project/blob/main/README.md#future-works)
 * [Credits](https://github.com/viviensiu/LLM-project/blob/main/README.md#credits)
@@ -148,6 +149,7 @@ docker run -it \
 * Execute the following in command prompt:
     * `cd Desktop/az900_study_buddy`.
     * `docker compose down` 
+* You could also stop your ollama container if you're done with it.
 
 ## Evaluation Criteria
 For peer review: A full list of LLM zoomcamp project evaluation criteria is available [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria). 
