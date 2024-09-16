@@ -107,7 +107,7 @@ This is for reproduction of the AZ900 Study Buddy application only (without repr
 ### Pick your LLM
 * There are 2 LLM options available in the application: GPT-4o-mini and Ollama Phi3. You need to decide on which one to use and to have it ready before starting the application. See diagram for setup flow:
 ![app setup flow](https://github.com/viviensiu/LLM-project/blob/main/image/app_setup_flow.png)
-    * **GPT-4o-mini**: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]((https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)) directly.
+    * **GPT-4o-mini**: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application) directly.
     * **Ollama Phi3**: You need to have a **running ollama container with Phi3 model inside**.To check if you have an existing ollama container, execute `docker ps -a`. 
         * If one exists but stopped, start container with `docker start ollama`. 
         * If there's no existing Ollama container, execute the following:
@@ -138,7 +138,7 @@ docker run -it \
     * To ensure that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). You should see `az900_course_notes` under "index".
 * To access the application, open this link [http://localhost:8501/](http://localhost:8501/) in a browser. If it is successful, you should now see the following screen: 
 ![app screen](https://github.com/viviensiu/LLM-project/blob/main/image/app_screen.png)
-* **Note**: If you executed `docker compose up -d`(detached mode), it would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [the application](http://localhost:8501/). Please try loading the page again after a minute or so.
+* **Note**: If you executed `docker compose up -d`(detached mode), it would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [the application](http://localhost:8501/). Please try refreshing the page again after a minute or so.
 
 ### How to use the application
 * You must choose an LLM model first before you could start asking questions!
