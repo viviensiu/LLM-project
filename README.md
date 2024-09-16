@@ -13,6 +13,7 @@
 * [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose)
     * [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm)
     * [Start up application](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)
+    * [How to use the application](https://github.com/viviensiu/LLM-project?tab=readme-ov-file#how-to-use-the-application)
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
 * [Future works](https://github.com/viviensiu/LLM-project/blob/main/README.md#future-works)
 * [Credits](https://github.com/viviensiu/LLM-project/blob/main/README.md#credits)
@@ -22,12 +23,11 @@
 <p align="center">
     <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
 </p>
-Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. 
-
+Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it. \
 
 Hence, a RAG(Retrieval-Augmented-Generation) application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
 
-As I'm currently studying for the Azure Foundation certification AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these common issues above and serve as an example on how RAG could be applied to educational use cases in general.
+As I'm studying for the Azure Foundation AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these issues above. This use case also serves as an example on how RAG could be applied to educational use cases in general.
 
 ## Dataset
 * All data for this project are available in [data folder](https://github.com/viviensiu/LLM-project/tree/main/data).
@@ -104,7 +104,7 @@ This is for reproduction of the AZ900 Study Buddy application only (without repr
 ### Pick your LLM
 * There are 2 LLM options available in the application: GPT-4o-mini and Ollama Phi3. You need to decide on which one to use and to have it ready before starting the application. See diagram for setup flow:
 ![app setup flow](https://github.com/viviensiu/LLM-project/blob/main/image/app_setup_flow.png)
-    * **GPT-4o-mini**: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]() directly.
+    * **GPT-4o-mini**: You will be asked to select GPT-4o-mini and input your OpenAI API key at the application screen. You can now proceed to [docker compose step]((https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)) directly.
     * **Ollama Phi3**: You need to have a **running ollama container with Phi3 model inside**.To check if you have an existing ollama container, execute `docker ps -a`. 
         * If one exists but stopped, start container with `docker start ollama`. 
         * If there's no existing Ollama container, execute the following:
@@ -124,22 +124,23 @@ docker run -it \
 ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
 
 ### Start up application
-* Download this zip file [az900_study_buddy.zip]() to your Desktop.
+* Download this zip file [az900_study_buddy.zip](https://github.com/viviensiu/LLM-project/blob/main/az900_study_buddy.zip) to your Desktop.
 * Unzip the downloaded `az900_study_buddy.zip`. You should see a new folder `az900_study_buddy` on your Desktop.
 * Execute the following in command prompt:
     * `cd Desktop/az900_study_buddy`.
-    * Run `docker compose up`. This takes about 2-3 minutes. Once it's done you should see the following (if using `docker compose up`):
+    * Run `docker compose up`. This takes about 2-3 minutes. Once it's done you should see the following:
     ![docker compose completed](https://github.com/viviensiu/LLM-project/blob/main/image/streamlit_ready.png)
-    * Cross check containers are up with `docker ps`, you should see containers `az900_study_buddy_app` and `elasticsearch`. If you plan to use Ollama, you need to see `ollama` as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
-    * (Optional) To check that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). You should see `az900_course_notes` under "index".
-* To access the application, copy-paste this link [http://localhost:8501/](http://localhost:8501/) into a browser. If it is successful, you should now see the following screen: 
+* Optional health checks:
+    * Cross check containers `az900_study_buddy_app` and `elasticsearch` are up with `docker ps`. If you plan to use Ollama, you need to see `ollama` container as well, refer this guide [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm).
+    * To ensure that data are indexed in elasticsearch, go to [http://localhost:9200/_cat/indices?v](http://localhost:9200/_cat/indices?v). You should see `az900_course_notes` under "index".
+* To access the application, open this link [http://localhost:8501/](http://localhost:8501/) in a browser. If it is successful, you should now see the following screen: 
 ![app screen](https://github.com/viviensiu/LLM-project/blob/main/image/app_screen.png)
-* **Note**: If you executed `docker compose up -d`(detached mode), it would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [http://localhost:8501/](http://localhost:8501/). Please try loading the page again after a minute or so.
+* **Note**: If you executed `docker compose up -d`(detached mode), it would only tell you the containers are started but it doesn't tell you when the Streamlit app is ready. So you might encounter 404 not found when loading [the application](http://localhost:8501/). Please try loading the page again after a minute or so.
 
 ### How to use the application
 * You must choose an LLM model first before you could start asking questions!
 * If you're using GPT-4o-mini, select "OpenAI GPT-4o-mini" in drop down list and input your API key, press submit.
-* If you're using Ollama Microsoft Phi3, select "" and press submit.
+* If you're using Ollama, select "Ollama Microsoft Phi3" and press submit.
 * You can now start to ask questions. Here's a screenshot of the interaction using Ollama:
 ![sample interaction](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_example.png) 
 
@@ -157,7 +158,7 @@ For peer review: A full list of LLM zoomcamp project evaluation criteria is avai
 * **RAG evaluation**
     * Metrics used: Cosine similarity, latency, cost and tokens usage.
     * Models evaluated: GPT-4o-mini, GPT-3.5-turbo.
-    * Multiple RAG approaches are evaluated based on metrics above.
+    * Multiple RAG approaches are evaluated based on metrics above. Refer notebook [RAG_evaluation.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/RAG_evaluation.ipynb).
     * Conclusion: The best one, GPT-4o-mini, is used in the application.
 * **Interface**
    * A Streamlit UI is used. See [app.py](https://github.com/viviensiu/LLM-project/blob/main/app/app.py)
@@ -168,7 +169,7 @@ For peer review: A full list of LLM zoomcamp project evaluation criteria is avai
 * **Containerization**
     * Everything is in docker-compose with an optional setup (if want to use Ollama Phi3 instead of GPT-4o-mini). See [Running the application (using docker compose)](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose).
 * **Reproducibility**
-    * See [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset), [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup), [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
+    * See [Dataset](https://github.com/viviensiu/LLM-project/blob/main/README.md#dataset), [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup), [Running the application using Docker Compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose).
 * **Best practices**
     * Hybrid search: refer notebook [retrieval_evaluation.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/retrieval_evaluation.ipynb).
     * Document re-ranking: refer notebook [hybrid_search_reranking.ipynb](https://github.com/viviensiu/LLM-project/blob/main/experimentation/hybrid_search_reranking.ipynb).
