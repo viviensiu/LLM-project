@@ -22,13 +22,15 @@
 
 ## Problem Statement
 <p align="center">
-    <img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200>
+    <!--img src="https://github.com/viviensiu/LLM-project/blob/main/image/problem.jpg" width=200 -->
+   <img src="https://imgs.xkcd.com/comics/predictive_models.png">
 </p>
-Studying and preparing for course exams can be overwhelming and time-consuming, especially when there are too many materials. Often times, one needs to look up information on a specific topic, but having trouble to know where to find it.
+<p align="center">
+   <em>credits: <a href="https://xkcd.com/2169/">xkcd.com</a></em>
+</p>
+Studying for exams can often be overwhelming and time-consuming, especially when there's a large volume of material to review. It's common to need quick access to information on specific topics but struggle to find the relevant content. To tackle this, a RAG (Retrieval-Augmented-Generation) application, built with course materials as its knowledge base, can streamline the study process by optimizing time and effort.
 
-Hence, a RAG(Retrieval-Augmented-Generation) application using course materials as a knowledge base could help to optimise the time and effort spent in studies and preparation for exams.
-
-As I'm studying for the Azure Foundation AZ-900 exam, my RAG application **AZ-900 Study Buddy** aims to address these issues above. This use case also serves as an example on how RAG could be applied to educational use cases in general.
+As I prepare for the Azure Fundamentals AZ-900 exam, I developed the **AZ-900 Study Buddy**, a RAG application designed to address these challenges. This project not only helps with exam preparation but also serves as a practical example of how RAG technology can be applied to educational use cases in general.
 
 ## Dataset
 * All data for this project are available in [data folder](https://github.com/viviensiu/LLM-project/tree/main/data).
