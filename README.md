@@ -14,8 +14,9 @@
     * [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm)
     * [Start up application](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
-* [Future works]()
-* [Credits]()
+* [Future works](https://github.com/viviensiu/LLM-project/blob/main/README.md#future-works)
+* [Credits](https://github.com/viviensiu/LLM-project/blob/main/README.md#credits)
+* [Contact info for peers]()
 
 ## Problem Statement
 <p align="center">
@@ -134,7 +135,7 @@ docker run -it \
 
 
 ## Evaluation Criteria
-Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria) for the LLM zoomcamp project evaluation criterias.
+For peer review: A full list of LLM zoomcamp project evaluation criteria is available [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria). 
 * **Problem description**
     * See [Problem Statement](https://github.com/viviensiu/LLM-project/blob/main/README.md#problem-statement).
 * **RAG flow**
@@ -169,6 +170,11 @@ Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#
 * Monitoring using PostgreSQL and Grafana.
 * Migrate data to MongoDB.
 * Deploy app onto cloud: HuggingFace Spaces, Streamlit Cloud, AWS EC2.
+* A project report to talk more about methodology, findings.
 
 ## Credits
 A big thanks to Alexey Grigorev and the [DataTalks.Club](https://github.com/DataTalksClub) for the LLM Zoomcamp course, which made this project possible! :smiley:
+
+## Contact info for peers
+* For any questions regarding peer review, please reach out to me on [DataTalks.Club](https://github.com/DataTalksClub) user "Vivien S.".
+* Alternatively, you can create a new issue under [Issues](https://github.com/viviensiu/LLM-project/issues).
