@@ -8,12 +8,14 @@
 * [Good-to-have](https://github.com/viviensiu/LLM-project/blob/main/README.md#good-to-have)
 * [Methodology](https://github.com/viviensiu/LLM-project/blob/main/README.md#methodology)
 * [Environment setup](https://github.com/viviensiu/LLM-project/blob/main/README.md#environment-setup)
-* [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search)
+    * [.env_template](https://github.com/viviensiu/LLM-project/blob/main/.env_template)
+    * [Elastic Search](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search)
 * [Running the application using docker compose](https://github.com/viviensiu/LLM-project/blob/main/README.md#running-the-application-using-docker-compose)
     * [Pick your LLM](https://github.com/viviensiu/LLM-project/blob/main/README.md#pick-your-llm)
     * [Start up application](https://github.com/viviensiu/LLM-project/blob/main/README.md#start-up-application)
 * [Evaluation Criteria](https://github.com/viviensiu/LLM-project/blob/main/README.md#evaluation-criteria)
 * [Future works]()
+* [Credits]()
 
 ## Problem Statement
 <p align="center">
@@ -72,14 +74,15 @@ One-time setup to reproduce any parts of this repo on your workstation. **You ca
 * ```pipenv shell```: This allows you to run commands such as `python xxx.py`, `streamlit run xxx.py` in the virtual environment.
 * **Make sure docker service is up and running!**
 * `git clone` this repo to your local workstation.
-* [Prepare the .env file]().
-* Start [elasticsearch].
+* [Prepare the .env file](https://github.com/viviensiu/LLM-project/blob/main/README.md#env-template).
+* Start [elasticsearch](https://github.com/viviensiu/LLM-project/blob/main/README.md#elastic-search).
 
 ### .env template
-Rename [.env_template] to `.env`
+* Rename [.env_template] to `.env`. 
+* (Not applicable for running application, only for code reproduction) copy-paste your OpenAI API key to env. variable "OPENAI_API_KEY".
 
 ### Elastic Search
-For some code reproduction, you will need elasticsearch container to be running. **Not applicable for running the application only as it's handled by docker compose**.
+**Not applicable for running application as it's handled by docker compose**. For some code reproduction, you will need elasticsearch container to be running..
 * To check if elasticsearch container is running, go to [http://localhost:9200/](http://localhost:9200/).
 * If not, either start up your existing elasticsearch container using `docker start elasticsearch` or start a new elasticsearch container with the following command: 
 ```bash
@@ -112,16 +115,16 @@ docker run -it \
 ```
 * Once ollama container is running (you can see it in `docker ps`), check if the ollama container has a Phi3 model by executing:
     * `docker exec -it ollama bash`, then `ollama list`.
-    * If you can see a **phi3** model then you could use Ollama Phi3 to test the app.
+    * If you can see a **phi3** model then you could use Ollama Phi3 to test the app. Example:
 ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_list_example.png)
-    * Otherwise, execute `ollama pull phi3`.
+    * Otherwise, execute `ollama pull phi3`. Example:
 ![alt text](https://github.com/viviensiu/LLM-project/blob/main/image/ollama_pull_phi3_example.png)
 
 ### Start up application
 * Create a new folder on your Desktop: `AZ900_study_buddy`. You could of course use another folder name and location, but by following this guideline it helps you to remember where you have saved it to!
 * Download this zip file to the `AZ900_study_buddy` on your Desktop.
 * Unzip the downloaded zip file.
-* Rename `.env_template` to `.env`
+* Rename `.env_template` to `.env` inside folder.
 * Execute the following in command prompt:
     * Navigate to the folder which contains all unzipped files for this application.
     * Run `docker compose up` or `docker compose up -d` (detached mode). This takes about 2-3 minutes.
@@ -168,4 +171,4 @@ Refer [here](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#
 * Deploy app onto cloud: HuggingFace Spaces, Streamlit Cloud, AWS EC2.
 
 ## Credits
-A big thanks to Alexey Grigorev and the DataTalks.Club for the LLM Zoomcamp course, which made it possible for me to produce my very own RAG application :smiley:
+A big thanks to Alexey Grigorev and the [DataTalks.Club](https://github.com/DataTalksClub) for the LLM Zoomcamp course, which made this project possible! :smiley:
